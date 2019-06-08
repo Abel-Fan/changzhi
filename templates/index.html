@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+
+</head>
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+        </div>
+    </div>
+<script>
+    let num = 10
+    let start = 0
+  var mySwiper = new Swiper ('.swiper-container', {
+       direction: 'vertical', // 垂直切换选项
+       loop: true, // 循环模式选项
+       observer:true,//修改swiper自己或子元素时，自动初始化swiper
+      on:{
+        slideNextTransitionEnd: function(){
+            num--
+            if(num==1){
+                start+=10
+                num+=10
+                $.ajax({
+                    url:"/getData/"+start,
+                    type:"get",
+                    success:function(data){
+                        for(let i=0;i<data.length;i++){
+                            createNode(data[i])
+                        }
+                    }
+                })
+            }
+        },
+      },
+  })
+
+    $.ajax({
+        url:"/getData/"+start,
+        type:"get",
+        success:function(data){
+
+            for(let i=0;i<data.length;i++){
+                console.log(123)
+                createNode(data[i])
+            }
+        }
+    })
+    function createNode(name){
+      $(".swiper-wrapper").append(`
+        <div class="swiper-slide" style="background-image:url('../static/img/${name}.webp')">${name}</div>
+
+      `)
+    }
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>

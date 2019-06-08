@@ -1,0 +1,22 @@
+body,html{
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+*{
+    margin:0;
+    padding:0;
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide{
+    background-size:cover;
+    background-position:center;
+    background-repeat: no-repeat;
+    color:#fff;
+    font-size:24px;
+    text-align: center;
+    line-height:50px;
+}
